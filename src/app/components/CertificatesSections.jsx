@@ -8,7 +8,7 @@ const featuredCertificates = [
   {
     id: 1,
     title: "Front-End Web Developer Expert",
-    dateOrPublisher: "Dicoding Indonesia",
+    dateOrPublisher: "Dicoding Indonesia · 2023",
     image: "/images/certificates/fe-expert.jpg",
     type: ["Front-End", "PWA", "Automation Testing"],
     description:
@@ -26,17 +26,18 @@ const featuredCertificates = [
   {
     id: 3,
     title: "Fundamental Front-End Web Development",
-    dateOrPublisher: "Dicoding Indonesia · 2023",
-    image: "/images/certificates/fundamental-fe.jpg",
+    dateOrPublisher: "Dicoding Indonesia · 2026",
+    image: "/images/certificates/fundamental-fe.png",
     type: ["Learning", "Front-End", "JavaScript"],
     description:
       "Front-end development fundamentals covering responsive interfaces, JavaScript-based interactions, accessibility, and modern web development practices.",
+    previewUrl: "https://www.dicoding.com/certificates/4EXGJ6DKDXRL",
   },
   {
     id: 4,
     title: "SOLID Programming Principles",
-    dateOrPublisher: "Dicoding Indonesia",
-    image: "/images/certificates/solid-principles.jpg",
+    dateOrPublisher: "Dicoding Indonesia · 2026",
+    image: "/images/certificates/solid-principles.png",
     type: ["Learning", "Clean Code", "SOLID"],
     description:
       "Learned object-oriented design principles for building maintainable, extensible, and scalable software.",
@@ -53,7 +54,7 @@ const featuredCertificates = [
   {
     id: 6,
     title: "Generative AI Usage",
-    dateOrPublisher: "Dicoding Indonesia",
+    dateOrPublisher: "Dicoding Indonesia · 2026",
     image: "/images/certificates/generative-ai.jpg",
     type: ["Learning", "AI"],
     description:
@@ -101,11 +102,12 @@ const otherCertificates = [
   {
     id: 11,
     title: "JavaScript Programming Fundamentals",
-    dateOrPublisher: "Dicoding Indonesia",
-    image: "/images/certificates/js-fundamental.jpg",
+    dateOrPublisher: "Dicoding Indonesia · 2026",
+    image: "/images/certificates/js-fundamental.png",
     type: ["Learning", "JavaScript"],
     description:
       "Programming fundamentals using JavaScript, including data structures, functions, object-oriented programming, and asynchronous processes.",
+    previewUrl: "https://www.dicoding.com/certificates/NVP7NMO8VZR0",
   },
   {
     id: 12,
@@ -119,7 +121,7 @@ const otherCertificates = [
   {
     id: 13,
     title: "Python Programming Fundamentals",
-    dateOrPublisher: "Dicoding Indonesia · 2026",
+    dateOrPublisher: "Dicoding Indonesia · 2024",
     image: "/images/certificates/python-fundamental.jpg",
     type: ["Learning", "Python"],
     description:
