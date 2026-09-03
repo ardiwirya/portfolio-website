@@ -6,6 +6,38 @@ import { motion, useInView } from 'framer-motion'
 const projectsData = [
   {
     id: 1,
+    title: "NusaMart — E-Commerce Platform",
+    description:
+      "A production-style fullstack e-commerce platform with category browsing, flash sales, and a full checkout flow — built with Next.js, TypeScript, PostgreSQL, and Prisma.",
+    image: "/images/projects/nusa-mart.png",
+    stacks: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
+    keyFeatures: [
+      "Product browsing across multiple categories (Electronics, Fashion, Beauty, Food & Beverage, Sports)",
+      "Flash sale section with countdown timer and discount badges",
+      "Checkout flow backed by PostgreSQL via Prisma ORM and Next.js API routes",
+      "Responsive storefront layout built with Tailwind CSS",
+    ],
+    gitUrl: "https://github.com/ardiwirya/nusa-mart",
+    previewUrl: "",
+  },
+  {
+    id: 2,
+    title: "CollabSpace — Team Collaboration Workspace",
+    description:
+      "A real-time team collaboration workspace with channel-based messaging, presence, and notifications — built with Next.js, TypeScript, and Supabase.",
+    image: "/images/projects/collabspace.png",
+    stacks: ["Next.js", "TypeScript", "Supabase", "Zustand"],
+    keyFeatures: [
+      "Real-time channel-based messaging powered by Supabase",
+      "Presence indicators and direct messages",
+      "Multi-channel workspace structure, including restricted/permissioned channels",
+      "Zustand for client state, TanStack Query for server state",
+    ],
+    gitUrl: "https://github.com/ardiwirya/collabspace",
+    previewUrl: "",
+  },
+  {
+    id: 3,
     title: "Clinic Information System",
     description:
       "Fullstack information system for managing patient records, appointments, and clinic staff — built as a REST API (Express.js) consumed by a separate React front-end.",
@@ -24,7 +56,23 @@ const projectsData = [
     previewUrl: "/",
   },
   {
-    id: 2,
+    id: 4,
+    title: "Resumake AI — Resume Builder",
+    description:
+      "A modern CV/resume builder with a guided multi-step form, live preview, multiple templates, and one-click PDF export — built with Next.js 15, TypeScript, and shadcn/ui.",
+    image: "/images/projects/resumake-ai.png",
+    stacks: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+    keyFeatures: [
+      "8-step guided form covering personal info, education, experience, skills, certificates, and languages",
+      "Live preview that updates as the user types",
+      "Multiple resume templates (Modern, Classic, Minimal)",
+      "Auto-save progress and one-click PDF export",
+    ],
+    gitUrl: "https://github.com/ardiwirya/resumake-ai",
+    previewUrl: "https://resumake-ai.vercel.app/",
+  },
+  {
+    id: 5,
     title: "CineVault — Movie Discovery App",
     description:
       "A movie discovery portfolio project built with Astro and React islands, featuring live search, genre filtering, and a localStorage-based watchlist that runs entirely without a backend.",
@@ -41,7 +89,7 @@ const projectsData = [
     previewUrl: "https://cinevault-astro.vercel.app/",
   },
   {
-    id: 3,
+    id: 6,
     title: "HargaCerdas — AI Pricing Advisor",
     description:
       "A free pricing tool for small businesses (UMKM) to calculate profit margins, compare pricing scenarios, and get an AI-generated selling price recommendation. Runs fully client-side — no backend, no server cost, and all data stays on the user's device.",
@@ -57,7 +105,7 @@ const projectsData = [
     previewUrl: "https://hargacerdas.vercel.app/",
   },
   {
-    id: 4,
+    id: 7,
     title: "SkyCast — Weather Forecast App",
     description:
       "A weather forecast app to search any city and see current conditions, an hourly outlook, and a 7-day forecast — fully localized in Indonesian.",
@@ -73,7 +121,7 @@ const projectsData = [
     previewUrl: "https://indo-skycast.vercel.app/",
   },
   {
-    id: 5,
+    id: 8,
     title: "Portfolio Website",
     description:
       "This portfolio website itself — built with Next.js and Tailwind CSS, showcasing my background, projects, and certifications as a Front-End Developer.",
@@ -86,20 +134,6 @@ const projectsData = [
     ],
     gitUrl: "https://github.com/ardiwirya/portfolio-website",
     previewUrl: "https://ardiwirya.vercel.app/",
-  },
-  {
-    id: 6,
-    title: "Pomodoro Timer",
-    description:
-      "A customizable Pomodoro timer app to help manage focus sessions and breaks for better productivity and time management.",
-    image: "/images/projects/pomodoro.png",
-    stacks: ["React", "JavaScript"],
-    keyFeatures: [
-      "Customizable focus and break durations",
-      "Simple, distraction-free interface",
-    ],
-    gitUrl: "https://github.com/ardiwirya/pomodoro-timer",
-    previewUrl: "/",
   },
 ];
 
