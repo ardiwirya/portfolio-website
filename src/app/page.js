@@ -9,17 +9,17 @@ import AchievementsSection from "./components/AchievementsSection";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-[#121212]">
-      <Navbar/>
-      <div class='container mt-24 mx-auto px-12 py-4'>
-        <HeroSection/>
-        <AchievementsSection/>
-        <AboutSection/>
-        <ProjectsSections/>
-        <CertificatesSections/>
-        <EmailSection/>
+    <main className="flex min-h-screen flex-col bg-page">
+      <Navbar />
+      <div className="container mt-24 mx-auto px-4 sm:px-8 lg:px-12 py-4">
+        <HeroSection />
+        <AchievementsSection />
+        <AboutSection />
+        <ProjectsSections />
+        <CertificatesSections />
+        <EmailSection />
       </div>
-      <Footer/>
+      <Footer />
     </main>
   );
 }
