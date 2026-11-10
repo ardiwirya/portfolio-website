@@ -1,72 +1,47 @@
-# Portfolio Website Ardi Wirya
+# Ardi Wirya — Portfolio
 
-My personal portfolio website showcasing my background, projects, and certifications as a Front-End Developer and fresh graduate in Informatics Engineering.
- 
-**Live Site:** [My Portfolio Website](https://ardiwirya.vercel.app/)
+Portfolio at [ardiwirya.vercel.app](https://ardiwirya.vercel.app), retaining the original dark design, gradient heading, profile photos, animated text/counters, About tabs, project/certificate modals, certificate expansion, and contact form. Light mode is optional; dark remains the default.
 
-## Preview
+## Local development
 
-![Screencapture](/github/portfolio-website.png)
+Use Node.js 22 LTS:
 
-## About
-
-I'm a Front-End Developer and fresh graduate in Informatics Engineering from Universitas Malikussaleh, with hands-on experience building responsive web applications using React and Next.js. This site is where I showcase my work, skills, and certifications.
-
-## Tech Stack
-
-- **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Animation:** [Framer Motion](https://www.framer.com/motion/)
-- **Contact Form:** Next.js API Route + [Resend](https://resend.com/)
-- **Deployment:** [Vercel](https://vercel.com/)
-
-## Features
-
-- Responsive dark-themed UI with custom color palette
-- Animated hero section with role/title cycling text
-- About section with tabbed Skills / Experience / Organizations / Awards
-- Project showcase with detail modal
-- Certificate gallery with curated highlights + expandable full list
-- Working contact form via a Next.js API route
-- Downloadable CV (PDF)
-
-## Getting Started
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/ardiwirya/portfolio-website.git
-   cd portfolio-website
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env.local` file in the root directory (see [Environment Variables](#environment-variables) below).
-4. Run the development server:
-   ```bash
-   npm run dev
-   ```
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Environment Variables
-
-This project uses [Resend](https://resend.com/) to power the contact form via a Next.js API route (`src/app/api/contact/route.js`). Create a free Resend account, get an API key, then add it to a `.env.local` file (and to your Vercel project settings):
-
-```
-RESEND_API_KEY=your_resend_api_key
+```sh
+nvm use
+npm ci
+cp .env.example .env.local
+npm run dev
 ```
 
-The key is only used server-side inside the API route — it is never exposed to the browser.
+Set `RESEND_API_KEY` in `.env.local` for the contact form. Do not commit the key. The existing recipient and sender are unchanged. Without a key, the API returns a clear service-unavailable error and the form offers a direct email link. A successful API response means the provider accepted the request, not that final inbox delivery was verified.
+
+The app uses Next.js 16, React 19, JavaScript, and Tailwind CSS. Inter and Space Grotesk are bundled locally, so builds do not depend on fetching Google Fonts. Framer Motion handles the existing card/counter animations; anchor scrolling uses native browser behavior instead of a separate library.
+
+## Content updates
+
+- `src/app/data/profile.js`: headline, About copy, CV path, and contact links.
+- `src/app/data/about.js`: skills, employment, organizations, and awards.
+- `src/app/data/projects.js`: all eight projects, their details, and source/demo links.
+- `src/app/data/certificates.js`: all fifteen original certificate/achievement entries.
+- `public/CV_Ardi_Wirya_Indarto.pdf`: latest uploaded CV; its public URL is preserved.
+
+The new experience entry describes the MagangHub apprenticeship at PT Bakrie Autoparts from September 2026, with Angular, Ionic, TypeScript, ERIS, authentication/routing/session guards, UI role-based access, and REST API integration. Freelance dates are July 2023–August 2026. Company details stay within the supplied CV; no internal assets are included.
+
+`Modal` and `ItemDetails` share the project/certificate dialog implementation. Native dialogs handle focus containment; close, Escape, backdrop dismissal, focus restoration, and page scroll locking are retained. The theme button uses CSS color variables and remembers the choice in local storage, with a dark fallback if storage is unavailable. Reduced-motion preferences disable animated typing/scrolling and reduce motion.
+
+## Verification
+
+```sh
+npm run check
+npm audit --audit-level=high
+npx playwright install chromium
+npm run test:e2e
+```
+
+Tests run against a production build and cover both themes at 360, 390, 768, and 1440px; keyboard tabs/menu; modal content and focus restoration; all certificates; contact success/error behavior; PDF/metadata routes; invalid contact payloads; and unavailable browser storage. Contact UI tests intercept requests and do not send email.
+
+Verification on 10 November 2026: build and ESLint pass; all 10 browser tests pass, including axe WCAG 2/2.1 A/AA checks in both themes. Production dependency audit has zero findings. The full audit still reports development-only moderate findings in the ESLint/minimatch chain; the high/critical gate passes. ESLint 9 remains pinned to match the Next.js plugin peer ranges.
 
 ## Deployment
 
-This project is deployed on [Vercel](https://vercel.com/). Any push to the `main` branch automatically triggers a new deployment.
-
-## Contact
-
-- **LinkedIn:** [Ardi Wirya](https://www.linkedin.com/in/ardiwirya11/)
-- **GitHub:** [ardiwirya](https://github.com/ardiwirya)
-
----
-
-Built with Next.js, bootstrapped from [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Use the existing Vercel project, Node.js 22.x, and its existing `RESEND_API_KEY`. No database migration or new service is needed. Review the branch preview before merging to `main`. Email delivery requires the existing Resend configuration and has not been tested with a real outbound message in this revision.
