@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { profile } from "../data/profile";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,9 +8,9 @@ import GithubIcon from "../../../public/github-icon.svg";
 import LinkedInIcon from "../../../public/linkedin-icon.svg";
 
 const EmailSection = () => {
-  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (status === "sending") return;
     const form = e.currentTarget;
@@ -30,8 +31,14 @@ const EmailSection = () => {
         body: JSON.stringify(payload),
       });
 
-      const result = await res.json();
-      if (!res.ok || result.success !== true) throw new Error("Request failed");
+      const result: unknown = await res.json();
+      if (
+        !res.ok ||
+        typeof result !== "object" ||
+        result === null ||
+        !("success" in result) ||
+        result.success !== true
+      ) throw new Error("Request failed");
 
       setStatus("sent");
       form.reset();
@@ -51,12 +58,10 @@ const EmailSection = () => {
           Let&apos;s Connect
         </h2>
         <p className="text-muted mb-4 max-w-md">
-          I&apos;m open to exploring new professional opportunities and
-          collaborations. Whether you have a project proposal, a question, or
-          simply want to network, feel free to reach out. I&apos;ll respond as
-          promptly as possible, and I look forward to building meaningful
-          connections!
+          Have a frontend role or a web project in mind? Send me a message
+          with the project details, or connect with me on GitHub and LinkedIn.
         </p>
+        <p className="text-muted mb-4">Based in {profile.location}.</p>
         <div className="socials flex flex-row gap-2">
           <Link href={profile.github} target="_blank" rel="noopener noreferrer">
             <Image src={GithubIcon} alt="GitHub" className="social-icon" />
@@ -163,7 +168,7 @@ const EmailSection = () => {
             >
               Something went wrong. Please try again or email me directly at{" "}
               <a href={`mailto:${profile.email}`} className="underline">
-                ardiwiryaindarto1@gmail.com
+                {profile.email}
               </a>
               .
             </p>

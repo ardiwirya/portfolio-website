@@ -1,4 +1,6 @@
-export const SKILLS_DATA = [
+import type { AboutItem } from "./types";
+
+export const SKILLS_DATA: AboutItem[] = [
   {
     title: "Front-End Web Development",
     language:
@@ -24,15 +26,19 @@ export const SKILLS_DATA = [
   {
     title: "Soft Skills",
     language:
-      "Leadership, Teamwork, Client Communication, Technical Troubleshooting, Strategic Planning, Cross-Cultural Collaboration",
+      "Teamwork, Leadership, Client Communication, Technical Troubleshooting, Cross-Cultural Communication",
     totalDuration: "Professional Skills",
+  },
+  {
+    title: "Languages",
+    language: "Bahasa Indonesia (native), English (TOEFL ITP 483)",
   },
 ];
 
-export const EXPERIENCE_DATA = [
+export const EXPERIENCE_DATA: AboutItem[] = [
   {
     title: "Frontend Developer (Apprenticeship)",
-    institution: "PT Bakrie Autoparts — MagangHub",
+    institution: "PT Bakrie Autoparts — Bekasi, West Java",
     date: "Sep 2026 - Present",
     highlights: [
       "Build frontend features for ERIS, an internal multi-application enterprise platform, using Angular, Ionic, and TypeScript.",
@@ -46,25 +52,33 @@ export const EXPERIENCE_DATA = [
     institution: "Self-Employed",
     date: "Jul 2023 - Aug 2026",
     totalDuration: "3 years",
-    description:
-      "Developed, maintained, and optimized client websites; delivered a village government CMS for resident profiles, demographic data, and local news publishing.",
+    highlights: [
+      "Developed, debugged, maintained, and optimized client websites using HTML, CSS, and JavaScript.",
+      "Delivered a village government CMS for resident profiles, demographic data, and local news publishing through an admin panel.",
+      "Managed client requirements from the initial briefing through final delivery.",
+    ],
   },
   {
     image: "/images/logo/dicoding.avif",
     title: "Frontend Developer Student",
-    institution: "Certified Independent Study (MSIB) — Dicoding Indonesia",
+    institution: "Kampus Merdeka / Dicoding Indonesia — Remote",
     date: "Aug - Dec 2023",
     totalDuration: "918-hour intensive program",
+    highlights: [
+      "Completed a certified independent study program covering frontend and backend web development.",
+      "Built responsive web applications and REST APIs with Node.js, with code managed on GitHub.",
+    ],
   },
 ];
 
-export const ORGANIZATIONS_DATA = [
+export const ORGANIZATIONS_DATA: AboutItem[] = [
   {
     image: "/images/logo/ldk.png",
     title: "Secretary General & Project Leader",
     institution: "UKM LDK Al-Kautsar, Malikussaleh University",
     date: "Jan - Dec 2024",
     totalDuration: "12 months",
+    description: "Managed administration and evaluations for more than 25 activities alongside leading the international collaboration program.",
   },
   {
     image: "/images/logo/unimal.png",
@@ -78,12 +92,14 @@ export const ORGANIZATIONS_DATA = [
   },
 ];
 
-export const HONOR_AWARDS_DATA = [
+export const HONOR_AWARDS_DATA: AboutItem[] = [
   {
     image: "/images/logo/senastika.png",
     title: "Published Paper & Presenter",
     institution:
       "Seminar Nasional Teknologi Informasi dan Teknik Informatika (SENASTIKA) 2024",
     monthYear: "2024",
+    description:
+      'Co-authored and presented "Comparison of Accuracy of Household Electricity Consumption Prediction Using Single Exponential Smoothing and Single Moving Average Methods" at SENASTIKA 2024.',
   },
 ];

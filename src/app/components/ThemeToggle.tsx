@@ -2,7 +2,7 @@
 import { useSyncExternalStore } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
-function subscribe(callback) {
+function subscribe(callback: () => void) {
   const observer = new MutationObserver(callback);
   observer.observe(document.documentElement, {
     attributes: true,
@@ -28,7 +28,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-      className="p-2 min-h-11 min-w-11 text-foreground rounded border border-outline"
+      className="p-2 min-h-11 min-w-11 text-foreground rounded-sm border border-outline"
     >
       {theme === "dark" ? (
         <SunIcon className="h-5 w-5 mx-auto" />

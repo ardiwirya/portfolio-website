@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import ItemDetails from "./ItemDetails";
 import { certificates } from "../data/certificates";
+import type { Certificate } from "../data/types";
 
 export default function CertificatesSections() {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<Certificate | null>(null);
   const [showAll, setShowAll] = useState(false);
   return (
     <section id="certificates" className="pt-20">
@@ -36,7 +37,7 @@ export default function CertificatesSections() {
           aria-expanded={showAll}
           aria-controls="certificate-list"
           onClick={() => setShowAll(!showAll)}
-          className="px-4 py-2 min-h-11 text-foreground bg-chip rounded"
+          className="px-4 py-2 min-h-11 text-foreground bg-chip rounded-sm"
         >
           {showAll ? "Show Less" : "Show More"}
         </button>

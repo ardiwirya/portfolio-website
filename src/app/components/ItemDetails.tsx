@@ -1,15 +1,23 @@
 import Image from "next/image";
 import Modal from "./Modal";
+import type { PortfolioItem } from "../data/types";
 
 const sections = [
   ["keyFeatures", "Key Features"],
   ["keyTechnologies", "Key Technologies"],
   ["myRole", "My Role"],
   ["learningAbout", "Learning About"],
-];
-const validLink = (url) => typeof url === "string" && /^https:\/\//.test(url);
+] as const;
+const validLink = (url: string | undefined): url is string =>
+  typeof url === "string" && /^https:\/\//.test(url);
 
-export default function ItemDetails({ item, onClose, certificate = false }) {
+interface ItemDetailsProps {
+  item: PortfolioItem;
+  onClose: () => void;
+  certificate?: boolean;
+}
+
+export default function ItemDetails({ item, onClose, certificate = false }: ItemDetailsProps) {
   const repos =
     item.repoLinks ??
     (validLink(item.gitUrl)
@@ -33,7 +41,7 @@ export default function ItemDetails({ item, onClose, certificate = false }) {
           <div className="mb-4" key={key}>
             <h3 className="text-lg font-semibold mb-2">{title}</h3>
             <ul className="list-disc list-inside space-y-1">
-              {item[key].map((value) => (
+              {item[key]?.map((value) => (
                 <li key={value}>{value}</li>
               ))}
             </ul>
@@ -55,7 +63,7 @@ export default function ItemDetails({ item, onClose, certificate = false }) {
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-outline rounded px-3 py-2 hover:bg-chip"
+              className="border border-outline rounded-sm px-3 py-2 hover:bg-chip"
             >
               {repo.label}
             </a>
@@ -65,7 +73,7 @@ export default function ItemDetails({ item, onClose, certificate = false }) {
             href={item.previewUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-outline rounded px-3 py-2 hover:bg-chip"
+            className="border border-outline rounded-sm px-3 py-2 hover:bg-chip"
           >
             {certificate ? "View Certificate" : "View Live Demo"}
           </a>

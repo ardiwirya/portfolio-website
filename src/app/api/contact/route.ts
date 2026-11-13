@@ -2,21 +2,29 @@ import { Resend } from "resend";
 import { profile } from "../../data/profile";
 
 const limits = { name: 100, email: 254, subject: 200, message: 5000 };
-export async function POST(request) {
-  let body;
+
+type ContactMessage = Record<keyof typeof limits, string>;
+
+function isContactMessage(body: unknown): body is ContactMessage {
+  if (typeof body !== "object" || body === null || Array.isArray(body)) {
+    return false;
+  }
+  const fields = body as Record<string, unknown>;
+  return Object.entries(limits).every(([field, max]) => {
+    const value = fields[field];
+    return typeof value === "string" && value.trim().length > 0 && value.length <= max;
+  });
+}
+
+export async function POST(request: Request) {
+  let body: unknown;
   try {
     body = await request.json();
   } catch {
     return Response.json({ error: "Invalid JSON." }, { status: 400 });
   }
   if (
-    !body ||
-    Object.entries(limits).some(
-      ([field, max]) =>
-        typeof body[field] !== "string" ||
-        !body[field].trim() ||
-        body[field].length > max,
-    ) ||
+    !isContactMessage(body) ||
     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email.trim())
   ) {
     return Response.json(
@@ -31,9 +39,10 @@ export async function POST(request) {
       },
       { status: 503 },
     );
-  const { name, email, subject, message } = Object.fromEntries(
-    Object.keys(limits).map((key) => [key, body[key].trim()]),
-  );
+  const name = body.name.trim();
+  const email = body.email.trim();
+  const subject = body.subject.trim();
+  const message = body.message.trim();
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({

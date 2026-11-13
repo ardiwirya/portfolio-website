@@ -1,25 +1,16 @@
-export const certificates = [
+import type { Certificate } from "./types";
+
+export const certificates: Certificate[] = [
   {
-    id: 1,
-    title: "Front-End Web Developer Expert",
-    dateOrPublisher: "Dicoding Indonesia \u00b7 2023",
-    image: "/images/certificates/fe-expert.jpg",
-    type: ["Front-End", "PWA", "Automation Testing"],
+    id: 5,
+    title: "Productivity with AI Bootcamp",
+    dateOrPublisher: "Badan Ekraf Digital Talent \u00b7 2026",
+    image: "/images/certificates/ai-bootcamp.png",
+    type: ["Generative AI", "Bootcamp"],
     description:
-      "Advanced-level certification covering optimized, scalable front-end web application development practices.",
-    imageWidth: 1170,
-    imageHeight: 827,
-  },
-  {
-    id: 2,
-    title: "Certified Independent Study \u2014 Front-End & Back-End",
-    dateOrPublisher: "Dicoding Indonesia \u00b7 MSIB Cycle 5, 2023",
-    image: "/images/certificates/msib-cycle5.jpg",
-    type: ["Front-End", "Back-End", "Bootcamp"],
-    description:
-      "Completed a 918-hour Certified Independent Study program covering front-end development, back-end development, RESTful APIs, collaborative development, and career preparation.",
-    imageWidth: 4716,
-    imageHeight: 3334,
+      "Completed the Productivity with AI Bootcamp organized by Badan Ekraf Digital Talent, focusing on the practical use of AI tools to improve professional productivity and digital workflows.",
+    imageWidth: 3508,
+    imageHeight: 2480,
   },
   {
     id: 3,
@@ -45,15 +36,37 @@ export const certificates = [
     imageHeight: 740,
   },
   {
-    id: 5,
-    title: "Productivity with AI Bootcamp",
-    dateOrPublisher: "Badan Ekraf Digital Talent \u00b7 2026",
-    image: "/images/certificates/ai-bootcamp.png",
-    type: ["Generative AI", "Bootcamp"],
+    id: 7,
+    title: "TOEFL ITP - Score 483",
+    dateOrPublisher: "UNIMAL Language Center, 2026",
+    image: "/images/certificates/toefl.jpg",
+    type: ["English"],
     description:
-      "Completed the Productivity with AI Bootcamp organized by Badan Ekraf Digital Talent, focusing on the practical use of AI tools to improve professional productivity and digital workflows.",
-    imageWidth: 3508,
-    imageHeight: 2480,
+      "Official TOEFL ITP score certifying English language proficiency.",
+    imageWidth: 1075,
+    imageHeight: 827,
+  },
+  {
+    id: 1,
+    title: "Front-End Web Developer Expert",
+    dateOrPublisher: "Dicoding Indonesia \u00b7 2023",
+    image: "/images/certificates/fe-expert.jpg",
+    type: ["Front-End", "PWA", "Automation Testing"],
+    description:
+      "Advanced-level certification covering optimized, scalable front-end web application development practices.",
+    imageWidth: 1170,
+    imageHeight: 827,
+  },
+  {
+    id: 2,
+    title: "Certified Independent Study \u2014 Front-End & Back-End",
+    dateOrPublisher: "Dicoding Indonesia \u00b7 MSIB Cycle 5, 2023",
+    image: "/images/certificates/msib-cycle5.jpg",
+    type: ["Front-End", "Back-End", "Bootcamp"],
+    description:
+      "Completed a 918-hour Certified Independent Study program covering front-end development, back-end development, RESTful APIs, collaborative development, and career preparation.",
+    imageWidth: 4716,
+    imageHeight: 3334,
   },
   {
     id: 6,
@@ -67,24 +80,13 @@ export const certificates = [
     imageHeight: 827,
   },
   {
-    id: 7,
-    title: "TOEFL ITP - Score 483",
-    dateOrPublisher: "UNIMAL Language Center, 2026",
-    image: "/images/certificates/toefl.jpg",
-    type: ["English"],
-    description:
-      "Official TOEFL ITP score certifying English language proficiency.",
-    imageWidth: 1075,
-    imageHeight: 827,
-  },
-  {
     id: 8,
     title: "Presenter - SENASTIKA 2024",
     dateOrPublisher: "Universitas Malikussaleh",
     image: "/images/certificates/senastika-presenter.jpg",
     type: ["Publication", "Data Science"],
     description:
-      'Co-authored and presented a published journal paper titled "Comparison of Accuracy of Household Electricity Consumption Prediction Using Single Exponential Smoothing and Single Moving Average Methods" at SENASTIKA 2024.',
+      'Co-authored and presented a paper titled "Comparison of Accuracy of Household Electricity Consumption Prediction Using Single Exponential Smoothing and Single Moving Average Methods" at SENASTIKA 2024.',
     imageWidth: 2865,
     imageHeight: 2025,
   },

@@ -7,7 +7,7 @@ for (const width of [360, 390, 768, 1440]) {
   }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ reducedMotion: "reduce" });
-    const errors = [];
+    const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
@@ -15,6 +15,20 @@ for (const width of [360, 390, 768, 1440]) {
       "Ardi Wirya",
     );
     await expect(page.locator("#cv")).toContainText("PT Bakrie Autoparts");
+    const heroPhoto = page.locator("#cv img");
+    await expect(heroPhoto).toHaveAttribute("src", /ardi-hero\.webp/);
+    await expect
+      .poll(() =>
+        heroPhoto.evaluate(
+          (image: HTMLImageElement) => image.complete && image.naturalWidth > 0,
+        ),
+      )
+      .toBe(true);
+    await expect(page.getByRole("tab", { name: "Experience", exact: true }))
+      .toHaveAttribute("aria-selected", "true");
+    await expect(page.locator("#about")).toContainText("Malikussaleh University");
+    await expect(page.locator("#about")).toContainText("3.75");
+    await expect(page.locator("#about")).toContainText("Isolation Forest");
     await expect(page.locator("#projects button")).toHaveCount(8);
     await expect(page.locator("#certificate-list button")).toHaveCount(9);
     for (const theme of ["dark", "light"]) {
@@ -199,6 +213,32 @@ test("CV, invalid contact requests, sitemap and robots are served correctly", as
     ).status(),
   ).toBe(400);
   expect((await request.get("/sitemap.xml")).status()).toBe(200);
+  const validFields = {
+    name: "Test visitor",
+    email: "test@example.com",
+    subject: "Test subject",
+    message: "Test message",
+  };
+  const invalidBodies: unknown[] = [
+    null,
+    [],
+    "text",
+    42,
+    true,
+    { ...validFields, name: " ".repeat(10) },
+    { ...validFields, email: "invalid" },
+    { ...validFields, name: "a".repeat(101) },
+    { ...validFields, email: `${"a".repeat(243)}@example.com` },
+    { ...validFields, subject: "a".repeat(201) },
+    { ...validFields, message: "a".repeat(5001) },
+  ];
+  for (const body of invalidBodies) {
+    const response = await request.post("/api/contact", {
+      data: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
+    });
+    expect(response.status()).toBe(400);
+  }
   expect((await request.get("/robots.txt")).status()).toBe(200);
 });
 

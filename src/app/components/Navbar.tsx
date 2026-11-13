@@ -13,7 +13,7 @@ const links = [
 ];
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const toggleRef = useRef(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   return (
     <nav
       aria-label="Main navigation"
@@ -53,7 +53,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen(!open)}
-            className="md:hidden p-2 min-h-11 min-w-11 border rounded border-outline text-foreground"
+            className="md:hidden p-2 min-h-11 min-w-11 border rounded-sm border-outline text-foreground"
           >
             {open ? (
               <XMarkIcon className="h-5 w-5 mx-auto" />

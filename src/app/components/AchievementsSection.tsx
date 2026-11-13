@@ -11,8 +11,8 @@ import {
 import { certificates } from "../data/certificates";
 import { projects } from "../data/projects";
 
-function Count({ value }) {
-  const ref = useRef(null);
+function Count({ value }: { value: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
   const reduced = useReducedMotion();
   const count = useMotionValue(value);
@@ -32,7 +32,7 @@ function Count({ value }) {
 }
 export default function AchievementsSection() {
   const achievements = [
-    { metric: "Certifications", value: certificates.length },
+    { metric: "Certificates & Achievements", value: certificates.length },
     { metric: "Projects", value: projects.length },
     { metric: "Years Freelancing", value: 3 },
   ];
@@ -45,7 +45,7 @@ export default function AchievementsSection() {
             className="flex flex-col items-center justify-center text-center mx-4 my-4 sm:my-0"
           >
             <p className="text-foreground text-4xl font-bold flex">
-              <Count value={item.value} />+
+              <Count value={item.value} />
             </p>
             <p className="text-muted text-base">{item.metric}</p>
           </div>
