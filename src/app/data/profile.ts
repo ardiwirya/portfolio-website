@@ -4,7 +4,7 @@ export const profile = {
   cv: "/CV_Ardi_Wirya_Indarto.pdf",
   github: "https://github.com/ardiwirya",
   linkedin: "https://www.linkedin.com/in/ardiwiryaindarto/",
-  location: "Bekasi, West Java",
+  location: "Jakarta Metropolitan Area, Indonesia",
   headline:
     "Frontend Developer at PT Bakrie Autoparts. Building enterprise interfaces with Angular, Ionic, and TypeScript, and web projects with React and Next.js.",
   about:

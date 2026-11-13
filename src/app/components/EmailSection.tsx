@@ -3,9 +3,6 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { profile } from "../data/profile";
 import Link from "next/link";
-import Image from "next/image";
-import GithubIcon from "../../../public/github-icon.svg";
-import LinkedInIcon from "../../../public/linkedin-icon.svg";
 
 const EmailSection = () => {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -62,16 +59,16 @@ const EmailSection = () => {
           with the project details, or connect with me on GitHub and LinkedIn.
         </p>
         <p className="text-muted mb-4">Based in {profile.location}.</p>
-        <div className="socials flex flex-row gap-2">
+        <div className="flex flex-wrap gap-4 text-sm underline underline-offset-4">
           <Link href={profile.github} target="_blank" rel="noopener noreferrer">
-            <Image src={GithubIcon} alt="GitHub" className="social-icon" />
+            GitHub
           </Link>
           <Link
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image src={LinkedInIcon} alt="LinkedIn" className="social-icon" />
+            LinkedIn
           </Link>
         </div>
       </div>

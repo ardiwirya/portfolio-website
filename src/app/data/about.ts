@@ -38,7 +38,7 @@ export const SKILLS_DATA: AboutItem[] = [
 export const EXPERIENCE_DATA: AboutItem[] = [
   {
     title: "Frontend Developer (Apprenticeship)",
-    institution: "PT Bakrie Autoparts — Bekasi, West Java",
+    institution: "PT Bakrie Autoparts",
     date: "Sep 2026 - Present",
     highlights: [
       "Build frontend features for ERIS, an internal multi-application enterprise platform, using Angular, Ionic, and TypeScript.",
@@ -47,7 +47,6 @@ export const EXPERIENCE_DATA: AboutItem[] = [
     ],
   },
   {
-    image: "/images/logo/freelance.png",
     title: "Freelance Software Engineer",
     institution: "Self-Employed",
     date: "Jul 2023 - Aug 2026",
@@ -59,7 +58,6 @@ export const EXPERIENCE_DATA: AboutItem[] = [
     ],
   },
   {
-    image: "/images/logo/dicoding.avif",
     title: "Frontend Developer Student",
     institution: "Kampus Merdeka / Dicoding Indonesia — Remote",
     date: "Aug - Dec 2023",
@@ -73,7 +71,6 @@ export const EXPERIENCE_DATA: AboutItem[] = [
 
 export const ORGANIZATIONS_DATA: AboutItem[] = [
   {
-    image: "/images/logo/ldk.png",
     title: "Secretary General & Project Leader",
     institution: "UKM LDK Al-Kautsar, Malikussaleh University",
     date: "Jan - Dec 2024",
@@ -81,7 +78,6 @@ export const ORGANIZATIONS_DATA: AboutItem[] = [
     description: "Managed administration and evaluations for more than 25 activities alongside leading the international collaboration program.",
   },
   {
-    image: "/images/logo/unimal.png",
     title: "Project Lead International Collaboration Mobility Students",
     institution:
       "Universitas Malikussaleh and Universiti Sultan Zainal Abidin (UniSZA), Malaysia",
@@ -94,7 +90,6 @@ export const ORGANIZATIONS_DATA: AboutItem[] = [
 
 export const HONOR_AWARDS_DATA: AboutItem[] = [
   {
-    image: "/images/logo/senastika.png",
     title: "Published Paper & Presenter",
     institution:
       "Seminar Nasional Teknologi Informasi dan Teknik Informatika (SENASTIKA) 2024",

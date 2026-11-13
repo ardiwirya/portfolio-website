@@ -28,7 +28,9 @@ for (const width of [360, 390, 768, 1440]) {
       .toHaveAttribute("aria-selected", "true");
     await expect(page.locator("#about")).toContainText("Malikussaleh University");
     await expect(page.locator("#about")).toContainText("3.75");
-    await expect(page.locator("#about")).toContainText("Isolation Forest");
+    await page.locator("#about summary").click();
+    await expect(page.getByText(/Clustering Analysis.*Isolation Forest/)).toBeVisible();
+    await page.locator("#about summary").click();
     await expect(page.locator("#projects button")).toHaveCount(8);
     await expect(page.locator("#certificate-list button")).toHaveCount(9);
     for (const theme of ["dark", "light"]) {
@@ -70,6 +72,8 @@ test("mobile menu, About tabs, and keyboard navigation", async ({ page }) => {
   await page.getByRole("tab", { name: "Experience", exact: true }).click();
   await expect(page.getByRole("tabpanel")).toContainText("Sep 2026 - Present");
   await expect(page.getByRole("tabpanel")).toContainText("Jul 2023 - Aug 2026");
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByRole("tab", { name: "Skills" })).toBeFocused();
   await page.keyboard.press("ArrowRight");
   await expect(page.getByRole("tab", { name: "Organizations" })).toBeFocused();
   await expect(page.getByRole("tabpanel")).toContainText("UniSZA");

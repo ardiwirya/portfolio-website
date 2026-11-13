@@ -98,9 +98,6 @@ textarea:focus-visible,
 .reduced-motion-name {
   display: none;
 }
-:root[data-theme="light"] .social-icon {
-  filter: invert(1);
-}
 :root[data-theme="light"] .text-transparent.bg-clip-text {
   --tw-gradient-from: #a15c00;
   --tw-gradient-to: #087e71;
