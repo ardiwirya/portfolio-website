@@ -1,7 +1,14 @@
 "use client";
 import Image from "next/image";
+import type { PortfolioItem } from "../data/types";
 
-export default function ProjectCard({ item, onOpen, certificate = false }) {
+interface ProjectCardProps {
+  item: PortfolioItem;
+  onOpen: () => void;
+  certificate?: boolean;
+}
+
+export default function ProjectCard({ item, onOpen, certificate = false }: ProjectCardProps) {
   const tags = certificate ? item.type : item.stacks;
   return (
     <article className="relative h-full bg-surface rounded-xl border border-outline shadow-md hover:shadow-lg hover:-translate-y-1 hover:translate-x-1 transition-transform duration-300 overflow-hidden">

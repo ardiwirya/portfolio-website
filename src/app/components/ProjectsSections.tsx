@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import ItemDetails from "./ItemDetails";
 import { projects } from "../data/projects";
+import type { Project } from "../data/types";
 
 export default function ProjectsSections() {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<Project | null>(null);
   return (
     <section id="projects">
       <h2 className="text-center text-4xl font-bold text-foreground mt-4 mb-8 md:mb-12">

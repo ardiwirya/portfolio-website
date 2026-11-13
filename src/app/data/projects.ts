@@ -1,4 +1,6 @@
-export const projects = [
+import type { Project } from "./types";
+
+export const projects: Project[] = [
   {
     id: 1,
     title: "NusaMart \u2014 E-Commerce Platform",
@@ -139,9 +141,9 @@ export const projects = [
     id: 8,
     title: "Portfolio Website",
     description:
-      "This portfolio website itself \u2014 built with Next.js and Tailwind CSS, showcasing my background, projects, and certifications as a Front-End Developer.",
+      "This portfolio website itself \u2014 built with Next.js, TypeScript, and Tailwind CSS, showcasing my background, projects, and certifications as a Front-End Developer.",
     image: "/images/projects/portfolio-website.png",
-    stacks: ["Next.js", "Tailwind CSS"],
+    stacks: ["Next.js", "TypeScript", "Tailwind CSS"],
     keyFeatures: [
       "Built with Next.js App Router and Tailwind CSS",
       "Contact form powered by a Next.js API route + Resend",

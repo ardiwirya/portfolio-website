@@ -1,10 +1,22 @@
 # Ardi Wirya — Portfolio
 
-Portfolio at [ardiwirya.vercel.app](https://ardiwirya.vercel.app), retaining the original dark design, gradient heading, profile photos, animated text/counters, About tabs, project/certificate modals, certificate expansion, and contact form. Light mode is optional; dark remains the default.
+Personal portfolio at [ardiwirya.vercel.app](https://ardiwirya.vercel.app), with a photo hero, professional experience, education, projects, certificates, and a contact form.
 
-## Local development
+## Stack
 
-Use Node.js 22 LTS:
+- Next.js 16.4.6 App Router and React 19.3.1
+- TypeScript 6.0.3 with strict checking for application code and browser tests
+- Tailwind CSS 4.3.5 with CSS theme tokens in `src/app/globals.css`
+- Framer Motion 14.13.0 and react-type-animation
+- Resend 6.38.0 through the server-side contact route
+- ESLint 9.39.5, Playwright 1.65.0, and axe-core accessibility checks
+- Node.js 24 LTS, configured in `.nvmrc` and `package.json`
+
+Dependency versions were checked on 13 November 2026. TypeScript 6 and ESLint 9 match the peer ranges of the current Next.js ESLint plugins. Review those ranges before upgrading either major version. Tailwind 4 targets Safari 16.4+, Chrome 111+, and Firefox 128+.
+
+Inter and Space Grotesk fonts are bundled locally. The interface supports dark and light themes, keyboard navigation, native dialogs, and reduced-motion preferences.
+
+## Development
 
 ```sh
 nvm use
@@ -13,23 +25,21 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Set `RESEND_API_KEY` in `.env.local` for the contact form. Do not commit the key. The existing recipient and sender are unchanged. Without a key, the API returns a clear service-unavailable error and the form offers a direct email link. A successful API response means the provider accepted the request, not that final inbox delivery was verified.
+On PowerShell, use `Copy-Item .env.example .env.local` for the environment-file step. Add `RESEND_API_KEY` to `.env.local` to enable contact email. The API returns HTTP 503 when the key is unavailable, and the form offers a direct email link.
 
-The app uses Next.js 16, React 19, JavaScript, and Tailwind CSS. Inter and Space Grotesk are bundled locally, so builds do not depend on fetching Google Fonts. Framer Motion handles the existing card/counter animations; anchor scrolling uses native browser behavior instead of a separate library.
+## Content and design
 
-## Content updates
+- `src/app/data/profile.ts` contains the headline, About copy, education, CV path, location, and contact links.
+- `src/app/data/about.ts` contains skills, professional experience, organizations, and publication details.
+- `src/app/data/projects.ts` contains eight projects, led by NusaMart, CollabSpace, and Clinic Information System.
+- `src/app/data/certificates.ts` contains fifteen certificate and achievement entries, with the five CV certifications first.
+- `src/app/data/types.ts` defines the shared content contracts used by cards and dialogs.
+- `public/images/ardi-hero.webp` is the optimized personal photo. Hero cropping is controlled by the image scale and transform origin in `HeroSection.tsx`.
+- `public/CV_Ardi_Wirya_Indarto.pdf` serves the downloadable CV.
 
-- `src/app/data/profile.js`: headline, About copy, CV path, and contact links.
-- `src/app/data/about.js`: skills, employment, organizations, and awards.
-- `src/app/data/projects.js`: all eight projects, their details, and source/demo links.
-- `src/app/data/certificates.js`: all fifteen original certificate/achievement entries.
-- `public/CV_Ardi_Wirya_Indarto.pdf`: latest uploaded CV; its public URL is preserved.
+Experience is the initial About tab. The content reflects the supplied CV, including the September 2026 apprenticeship at PT Bakrie Autoparts, July 2023–August 2026 freelance work, the 918-hour independent study program, and the university degree with GPA 3.75. Project and certificate counts derive from their data arrays.
 
-The new experience entry describes the MagangHub apprenticeship at PT Bakrie Autoparts from September 2026, with Angular, Ionic, TypeScript, ERIS, authentication/routing/session guards, UI role-based access, and REST API integration. Freelance dates are July 2023–August 2026. Company details stay within the supplied CV; no internal assets are included.
-
-`Modal` and `ItemDetails` share the project/certificate dialog implementation. Native dialogs handle focus containment; close, Escape, backdrop dismissal, focus restoration, and page scroll locking are retained. The theme button uses CSS color variables and remembers the choice in local storage, with a dark fallback if storage is unavailable. Reduced-motion preferences disable animated typing/scrolling and reduce motion.
-
-## Verification
+## Checks
 
 ```sh
 npm run check
@@ -38,10 +48,12 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Tests run against a production build and cover both themes at 360, 390, 768, and 1440px; keyboard tabs/menu; modal content and focus restoration; all certificates; contact success/error behavior; PDF/metadata routes; invalid contact payloads; and unavailable browser storage. Contact UI tests intercept requests and do not send email.
+`check` runs ESLint, `next typegen && tsc --noEmit`, and the production build. Browser tests use the production server, so run the build first. The suite covers 360, 390, 768, and 1440 px, both themes, hero image loading, CV facts, keyboard navigation, modal focus, certificate expansion, contact success/failure, invalid JSON payloads, the PDF and metadata routes, and unavailable browser storage. Axe checks WCAG 2/2.1 A/AA rules.
 
-Verification on 10 November 2026: build and ESLint pass; all 10 browser tests pass, including axe WCAG 2/2.1 A/AA checks in both themes. Production dependency audit has zero findings. The full audit still reports development-only moderate findings in the ESLint/minimatch chain; the high/critical gate passes. ESLint 9 remains pinned to match the Next.js plugin peer ranges.
+Contact UI tests intercept network requests. Provider acceptance and delivery to the recipient's inbox require separate verification with the configured Resend account.
+
+For an existing browser installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable. Set `PLAYWRIGHT_BASE_URL` when testing an already-running preview server.
 
 ## Deployment
 
-Use the existing Vercel project, Node.js 22.x, and its existing `RESEND_API_KEY`. No database migration or new service is needed. Review the branch preview before merging to `main`. Email delivery requires the existing Resend configuration and has not been tested with a real outbound message in this revision.
+Use the existing Vercel project with Node.js 24.x and its `RESEND_API_KEY`. GitHub Actions installs dependencies, runs the checks, audits dependencies, and executes browser tests for pull requests and pushes to `main`. Review the branch preview before merging.

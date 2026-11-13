@@ -1,4 +1,6 @@
 import MotionProvider from "./components/MotionProvider";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -13,15 +15,17 @@ const spaceGrotesk = localFont({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Portofolio Ardi Wirya",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://ardiwirya.vercel.app"),
+  alternates: { canonical: "/" },
+  title: "Ardi Wirya Indarto | Frontend Developer",
   description:
     "Portfolio Ardi Wirya Indarto, Frontend Developer at PT Bakrie Autoparts. Angular, Ionic, React, Next.js, and TypeScript.",
   icons: {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Portofolio Ardi Wirya",
+    title: "Ardi Wirya Indarto | Frontend Developer",
     description:
       "Portfolio Ardi Wirya Indarto, Frontend Developer at PT Bakrie Autoparts. Angular, Ionic, React, Next.js, and TypeScript.",
     url: "https://ardiwirya.vercel.app",
@@ -31,13 +35,13 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Portofolio Ardi Wirya",
+    title: "Ardi Wirya Indarto | Frontend Developer",
     description:
       "Portfolio Ardi Wirya Indarto, Frontend Developer at PT Bakrie Autoparts. Angular, Ionic, React, Next.js, and TypeScript.",
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>

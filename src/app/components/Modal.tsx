@@ -1,11 +1,19 @@
 "use client";
 import { useEffect, useId, useRef } from "react";
+import type { ReactNode } from "react";
 
-export default function Modal({ title, onClose, children }) {
-  const ref = useRef(null);
+interface ModalProps {
+  title: string;
+  onClose: () => void;
+  children: ReactNode;
+}
+
+export default function Modal({ title, onClose, children }: ModalProps) {
+  const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   useEffect(() => {
     const dialog = ref.current;
+    if (!dialog) return;
     const previousFocus = document.activeElement;
     const previousOverflow = document.body.style.overflow;
     dialog.showModal();
@@ -13,7 +21,7 @@ export default function Modal({ title, onClose, children }) {
     return () => {
       dialog.close();
       document.body.style.overflow = previousOverflow;
-      if (previousFocus?.isConnected)
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected)
         previousFocus.focus({ preventScroll: true });
     };
   }, []);
@@ -28,7 +36,7 @@ export default function Modal({ title, onClose, children }) {
       }}
       onClick={(event) => {
         if (event.target !== ref.current) return;
-        const rect = ref.current.getBoundingClientRect();
+        const rect = event.currentTarget.getBoundingClientRect();
         if (
           event.clientX < rect.left ||
           event.clientX > rect.right ||
