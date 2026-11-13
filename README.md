@@ -1,4 +1,4 @@
-# Ardi Wirya — Portfolio
+# Ardi Wirya
 
 Personal portfolio at [ardiwirya.vercel.app](https://ardiwirya.vercel.app), with a photo hero, professional experience, education, projects, certificates, and a contact form.
 
